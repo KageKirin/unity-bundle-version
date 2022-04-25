@@ -1,0 +1,25 @@
+{
+  "name": "unity-bundle-version",
+  "version": "0.0.0",
+  "description": "Node.js-based tool to modify the bundleVersion of a Unity project (ProjectSettings/ProjectSettings.asset).",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/KageKirin/unity-bundle-version.git"
+  },
+  "keywords": [
+    "semver"
+  ],
+  "author": "Chris Helmich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KageKirin/unity-bundle-version/issues"
+  },
+  "homepage": "https://github.com/KageKirin/unity-bundle-version#readme",
+  "dependencies": {
+    "argparse": "^2.0.1",
+    "glob": "^7.2.0",
+    "js-yaml": "^4.1.0"
+  }
+}
