@@ -1,0 +1,19 @@
+name: Get Unity bundle version
+inputs:
+  file:
+    description: path to ProjectSettings/ProjectSettings.asset
+    required: false
+    default: ProjectSettings/ProjectSettings.asset
+outputs:
+  version:
+    description: version retrieved from ${{ inputs.file }}
+    value: ${{ steps.get.outputs.value }}
+runs:
+  using: composite
+  steps:
+  - id: get
+    name: Get Unity bundle version from ${{ inputs.file }}
+    shell: bash
+    run: |-
+      unity-bundle-version get ${{ inputs.file }}
+      echo "value=$(unity-bundle-version get ${{ inputs.file }})" >> $GITHUB_OUTPUT
