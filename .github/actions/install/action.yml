@@ -1,0 +1,13 @@
+name: Install unity-bundle-version
+runs:
+  using: composite
+  steps:
+  - name: Install
+    shell: bash
+    run: |-
+      npm install -g https://github.com/kagekirin/unity-bundle-version/tarball/main
+  - name: Verify installation
+    shell: bash
+    run: |-
+      which unity-bundle-version
+      unity-bundle-version --version

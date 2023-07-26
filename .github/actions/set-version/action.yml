@@ -1,0 +1,22 @@
+name: Set Unity bundle version
+inputs:
+  file:
+    description: path to ProjectSettings/ProjectSettings.asset
+    required: false
+    default: ProjectSettings/ProjectSettings.asset
+  version:
+    description: version in SemVer format
+    required: true
+outputs:
+  version:
+    description: version set to ${{ inputs.file }}
+    value: ${{ steps.set.outputs.value }}
+runs:
+  using: composite
+  steps:
+  - id: set
+    name: Set Unity bundle version to ${{ inputs.file }}
+    shell: bash
+    run: |-
+      unity-bundle-version set --version ${{ inputs.version }} ${{ inputs.file }}
+      echo "value=$(unity-bundle-version get ${{ inputs.file }})" >> $GITHUB_OUTPUT
