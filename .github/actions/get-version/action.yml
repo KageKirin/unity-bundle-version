@@ -17,3 +17,6 @@ runs:
     run: |-
       unity-bundle-version get ${{ inputs.file }}
       echo "version=$(unity-bundle-version get ${{ inputs.file }})" >> $GITHUB_OUTPUT
+  - shell: bash
+    run: |-
+      echo ${{ steps.get.outputs.version }}
