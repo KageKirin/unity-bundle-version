@@ -7,7 +7,7 @@ inputs:
 outputs:
   version:
     description: version retrieved from inputs.file
-    value: ${{ steps.get.outputs.value }}
+    value: ${{ steps.get.outputs.version }}
 runs:
   using: composite
   steps:
@@ -16,4 +16,4 @@ runs:
     shell: bash
     run: |-
       unity-bundle-version get ${{ inputs.file }}
-      echo "value=$(unity-bundle-version get ${{ inputs.file }})" >> $GITHUB_OUTPUT
+      echo "version=$(unity-bundle-version get ${{ inputs.file }})" >> $GITHUB_OUTPUT
