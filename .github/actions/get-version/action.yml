@@ -6,7 +6,7 @@ inputs:
     default: ProjectSettings/ProjectSettings.asset
 outputs:
   version:
-    description: version retrieved from ${{ inputs.file }}
+    description: version retrieved from inputs.file
     value: ${{ steps.get.outputs.value }}
 runs:
   using: composite
