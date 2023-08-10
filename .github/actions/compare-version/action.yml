@@ -1,0 +1,27 @@
+name: Compare Unity bundle version
+inputs:
+  file:
+    description: path to ProjectSettings/ProjectSettings.asset
+    required: false
+    default: ProjectSettings/ProjectSettings.asset
+  version:
+    description: version in SemVer format
+    required: true
+  regex:
+    description: ECMAScript Regular Expression to parse the version string for verification
+    required: false
+    default: "^(?<major>0|[1-9]\\d*)\\.(?<minor>0|[1-9]\\d*)(\\.(?<patch>0|[1-9]\\d*))?(?:-(?<prerelease>(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+outputs:
+  result:
+    description: Result of comparison, -1 -> given version is small than package version, 1 -> greater, 0 -> equal
+    value: ${{ steps.cmp.outputs.result }}
+runs:
+  using: composite
+  steps:
+  - id: cmd
+    name: Compare Unity bundle version to ${{ inputs.version }}
+    shell: bash
+    run: |-
+      result=$(unity-bundle-version cmp --version '${{ inputs.version }}' --regex '${{ inputs.regex }}' '${{ inputs.file }}')
+      echo ${result}
+      echo "result=${result}" >> $GITHUB_OUTPUT
