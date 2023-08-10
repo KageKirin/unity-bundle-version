@@ -19,8 +19,9 @@ runs:
     name: Get Unity bundle version from ${{ inputs.file }}
     shell: bash
     run: |-
-      unity-bundle-version get --regex '${{ inputs.regex }}' '${{ inputs.file }}'
-      echo "version=$(unity-bundle-version get --regex '${{ inputs.regex }}' '${{ inputs.file }}')" >> $GITHUB_OUTPUT
+      version=$(unity-bundle-version get --regex '${{ inputs.regex }}' '${{ inputs.file }}')
+      echo ${version}
+      echo "version=${version}" >> $GITHUB_OUTPUT
   - shell: bash
     run: |-
       echo ${{ steps.get.outputs.version }}
