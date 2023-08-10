@@ -21,8 +21,9 @@ jobs:
       # simple test on fixed test data
       - name: Test patch on simple format
         run: |
-          node . bump  --patch    testdata/simple/ProjectSettings.asset
-          echo "version=$(node . get    testdata/simple/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . bump  --patch    testdata/simple/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: simple_patch
       - name: Print results
         run: echo ${{ steps.simple_patch.outputs.version }}
@@ -37,8 +38,9 @@ jobs:
 
       - name: Test minor on simple format
         run: |
-          node . bump  --minor    testdata/simple/ProjectSettings.asset
-          echo "version=$(node . get    testdata/simple/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . bump  --minor    testdata/simple/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: simple_minor
       - name: Print results
         run: echo ${{ steps.simple_minor.outputs.version }}
@@ -53,8 +55,9 @@ jobs:
 
       - name: Test major on simple format
         run: |
-          node . bump  --major    testdata/simple/ProjectSettings.asset
-          echo "version=$(node . get    testdata/simple/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . bump  --major    testdata/simple/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: simple_major
       - name: Print results
         run: echo ${{ steps.simple_major.outputs.version }}
@@ -70,8 +73,9 @@ jobs:
       # simple test with custom regex on fixed test data
       - name: Test on simple format with custom regex
         run: |
-          node . bump  --regex '^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$' --major --minor --patch    testdata/simple/ProjectSettings.asset
-          echo "version=$(node . get    testdata/simple/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . bump  --regex '^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$' --major --minor --patch    testdata/simple/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: custom
       - name: Print results
         run: echo ${{ steps.custom.outputs.version }}
@@ -87,8 +91,9 @@ jobs:
       # prerelease test on fixed test data
       - name: Test on prerelease format
         run: |
-          node . bump  --major --minor --patch    testdata/prerelease/ProjectSettings.asset
-          echo "version=$(node . get    testdata/prerelease/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . bump  --major --minor --patch    testdata/prerelease/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: prerelease
       - name: Print results
         run: echo ${{ steps.prerelease.outputs.version }}
@@ -104,8 +109,9 @@ jobs:
       # buildmeta test on fixed test data
       - name: Test on buildmetadata format
         run: |
-          node . bump  --major --minor --patch    testdata/buildmeta/ProjectSettings.asset
-          echo "version=$(node . get    testdata/buildmeta/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . bump  --major --minor --patch    testdata/buildmeta/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: buildmeta
       - name: Print results
         run: echo ${{ steps.buildmeta.outputs.version }}
@@ -121,8 +127,9 @@ jobs:
       # complex test on fixed test data
       - name: Test on complex format
         run: |
-          node . bump  --major --minor --patch    testdata/complex/ProjectSettings.asset
-          echo "version=$(node . get    testdata/complex/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . bump  --major --minor --patch    testdata/complex/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: complex
       - name: Print results
         run: echo ${{ steps.complex.outputs.version }}
