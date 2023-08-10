@@ -14,7 +14,7 @@ inputs:
 outputs:
   version:
     description: version set to inputs.file
-    value: ${{ steps.set.outputs.value }}
+    value: ${{ steps.set.outputs.version }}
 runs:
   using: composite
   steps:
@@ -22,5 +22,6 @@ runs:
     name: Set Unity bundle version to ${{ inputs.file }}
     shell: bash
     run: |-
-      unity-bundle-version set --version '${{ inputs.version }}' --regex '${{ inputs.regex }}' '${{ inputs.file }}'
-      echo "value=$(unity-bundle-version set --version '${{ inputs.version }}' --regex '${{ inputs.regex }}' '${{ inputs.file }}')" >> $GITHUB_OUTPUT
+      version=$(unity-bundle-version set --version '${{ inputs.version }}' --regex '${{ inputs.regex }}' '${{ inputs.file }}')
+      echo ${version}
+      echo "version=${version}" >> $GITHUB_OUTPUT

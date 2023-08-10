@@ -21,8 +21,9 @@ jobs:
       # simple test on fixed test data
       - name: Test on simple format
         run: |
-          node . set --version '4.5.6'    testdata/simple/ProjectSettings.asset
-          echo "version=$(node . get    testdata/simple/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . set --version '4.5.6'    testdata/simple/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: simple
       - name: Print results
         run: echo ${{ steps.simple.outputs.version }}
@@ -38,8 +39,9 @@ jobs:
       # simple test with custom regex on fixed test data
       - name: Test on simple format with custom regex
         run: |
-          node . set --version '7.8.9'  --regex '^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$'    testdata/simple/ProjectSettings.asset
-          echo "version=$(node . get    testdata/simple/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . set --version '7.8.9'  --regex '^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$'    testdata/simple/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: custom
       - name: Print results
         run: echo ${{ steps.custom.outputs.version }}
@@ -55,8 +57,9 @@ jobs:
       # prerelease test on fixed test data
       - name: Test on prerelease format
         run: |
-          node . set --version '4.5.6-alpha.1'    testdata/prerelease/ProjectSettings.asset
-          echo "version=$(node . get    testdata/prerelease/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . set --version '4.5.6-alpha.1'    testdata/prerelease/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: prerelease
       - name: Print results
         run: echo ${{ steps.prerelease.outputs.version }}
@@ -72,8 +75,9 @@ jobs:
       # buildmeta test on fixed test data
       - name: Test on buildmetadata format
         run: |
-          node . set --version '4.5.6+baz.56'    testdata/buildmeta/ProjectSettings.asset
-          echo "version=$(node . get    testdata/buildmeta/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . set --version '4.5.6+baz.56'    testdata/buildmeta/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: buildmeta
       - name: Print results
         run: echo ${{ steps.buildmeta.outputs.version }}
@@ -89,8 +93,9 @@ jobs:
       # complex test on fixed test data
       - name: Test on complex format
         run: |
-          node . set --version '4.5.6-alpha.1+baz.56'     testdata/complex/ProjectSettings.asset
-          echo "version=$(node . get    testdata/complex/ProjectSettings.asset)" >> $GITHUB_OUTPUT
+          version=$(node . set --version '4.5.6-alpha.1+baz.56'     testdata/complex/ProjectSettings.asset)
+          echo ${version}
+          echo "version=${version}" >> $GITHUB_OUTPUT
         id: complex
       - name: Print results
         run: echo ${{ steps.complex.outputs.version }}
