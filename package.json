@@ -1,6 +1,6 @@
 {
   "name": "unity-bundle-version",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Node.js-based tool to modify the bundleVersion of a Unity project (ProjectSettings/ProjectSettings.asset).",
   "main": "index.js",
   "bin": {
